@@ -62,7 +62,7 @@ export const purchaseCourse= async (req, res) => {
             price_data:{
                 currency,
                 product_data:{
-                    name:courseData.courseTitle,
+                    name:courseData.courseTitle
                 },
                 unit_amount:Math.floor(newPurchase.amount)*100
             },
@@ -72,8 +72,8 @@ export const purchaseCourse= async (req, res) => {
         const session=await stripeInstance.checkout.sessions.create({
             success_url:`${origin}/loading/my-enrollments`,
             cancel_url:`${origin}/`,
-            mode:'payment',
             line_items:line_items,
+            mode:'payment',
             metadata:{
                 purchaseId:newPurchase._id.toString(),
                 },

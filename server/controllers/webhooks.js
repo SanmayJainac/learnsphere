@@ -54,10 +54,7 @@ export const clerkWebhooks = async (req, res) => {
     }
 }
 
-const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2023-10-16',
-  apiKey: process.env.STRIPE_SECRET_KEY,
-});
+const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 
 export const stripeWebhooks = async (request,response) => {
@@ -66,7 +63,7 @@ export const stripeWebhooks = async (request,response) => {
   let event;
 
   try {
-    event = stripeInstance.webhooks.constructEvent(request.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+    event = Stripe.webhooks.constructEvent(request.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
   }
   catch (err) {
     response.status(400).send(`Webhook Error: ${err.message}`);

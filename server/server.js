@@ -28,12 +28,8 @@ app.use('/api/course',express.json(),courseRouter)
 app.use('/api/user',express.json(),userRouter)
 app.post('/stripe',express.raw({type:'application/json'}),stripeWebhooks)
 //port     
-if (process.env.NODE_ENV !== 'production') {
-    const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running locally on port ${PORT}`);
-    }
-);
-}
+const port=process.env.PORT||5000
+app.listen(port,()=>{
+    console.log(`Server running on port ${port}`)
+})
 
-export const handler = serverless(app);
