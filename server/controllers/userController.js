@@ -54,7 +54,9 @@ export const purchaseCourse= async (req, res) => {
         const newPurchase = await Purchase.create(purchaseData);
 
         //stripe gateway initialize
-        const stripeInstance=new Stripe(process.env.STRIPE_SECRET_KEY);
+        const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY, {
+            apiVersion: '2023-10-16', // match your Stripe version
+        });
         
         const currency=process.env.CURRENCY.toLowerCase();
         //creating line item for stripe
