@@ -53,7 +53,7 @@ export const clerkWebhooks = async (req, res) => {
         res.json({success:false,message:error.message})
     }
 }
-console.log("STRIPE_SECRET_KEY:", process.env.STRIPE_SECRET_KEY ? "✅ Loaded" : "❌ Missing");
+
 
 const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY, {
   apiVersion: '2023-10-16', // match your Stripe version
