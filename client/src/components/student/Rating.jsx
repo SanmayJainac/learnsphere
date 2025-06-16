@@ -10,8 +10,11 @@ const Rating = ({initialRating,onRate}) => {
   }
 
   useEffect(() => {
-        if(initialRating) setRating(initialRating)
-  },[initialRating])
+  if (initialRating !== undefined && initialRating !== null) {
+    setRating(initialRating)
+  }
+}, [initialRating])
+
 
   return (
     <div>
